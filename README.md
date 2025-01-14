@@ -100,6 +100,40 @@ public class DownloadJSONTask implements Runnable {
 
     public static String getJsonContent() {
         return jsonContent;
+
+
+
+
+
+
+
+
+
+
+ALA DIN MAIN
+
+
+databaseManager = DatabaseManager.getInstance(this);
+        movieDao = databaseManager.getMovieReference();
+
+//        String jsonFromResources = JsonUtil.getJsonFromResources(this, R.raw.movies);
+//        ArrayList<Movie> movies = JsonUtil.parseJsonContent(jsonFromResources);
+//        movieArrayList.addAll(movies);
+
+        DownloadJSONTask downloadJSONTask = new DownloadJSONTask("https://jsonkeeper.com/b/6O40");
+        Thread threadJSON = new Thread(downloadJSONTask);
+        threadJSON.start();
+
+        try {
+            threadJSON.join(); // Wait for the thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String jsonContent = DownloadJSONTask.getJsonContent();
+
+        Log.d("IMPORTANT", jsonContent);
+        ArrayList<Movie> movies = JsonUtil.parseJsonContent(jsonContent);
+        movieArrayList.addAll(movies);
     }
 
     public static void setJsonContent(String jsonContent) {

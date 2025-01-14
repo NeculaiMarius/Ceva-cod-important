@@ -43,7 +43,7 @@ public class DownloadJSONTask implements Runnable {
 
             StringBuilder result = new StringBuilder();
             // Ii lipsea tampenia asta de paranteza si crapa. Nu prea se face asa, dar ayaye
-            result.append("[");
+            // result.append("[");
             for(String line; (line = bufferedReader.readLine())!= null;) {
                 if(result.length() > 0) {
                     result.append("\n");
